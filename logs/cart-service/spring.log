@@ -1,0 +1,34 @@
+00:02:45:183  INFO 23816 --- [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+00:02:45:185  INFO 23816 --- [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+00:02:45:187  INFO 23816 --- [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+00:02:45:283  INFO 23816 --- [http-nio-8082-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+00:02:45:594  INFO 23816 --- [http-nio-8082-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+00:02:45:601 DEBUG 23816 --- [http-nio-8082-exec-1] c.h.cart.mapper.CartMapper.selectList    : ==>  Preparing: SELECT id,user_id,item_id,num,name,spec,price,image,create_time,update_time FROM cart WHERE (user_id = ?)
+00:02:45:623 DEBUG 23816 --- [http-nio-8082-exec-1] c.h.cart.mapper.CartMapper.selectList    : ==> Parameters: 1(Long)
+00:02:45:647 DEBUG 23816 --- [http-nio-8082-exec-1] c.h.cart.mapper.CartMapper.selectList    : <==      Total: 1
+00:02:45:700 DEBUG 23816 --- [http-nio-8082-exec-1] com.hmall.api.client.ItemClient          : [ItemClient#getItemsByIds] ---> GET http://item-service/items?ids=100000006163 HTTP/1.1
+00:02:45:700 DEBUG 23816 --- [http-nio-8082-exec-1] com.hmall.api.client.ItemClient          : [ItemClient#getItemsByIds] ---> END HTTP (0-byte body)
+00:02:45:938 DEBUG 23816 --- [http-nio-8082-exec-1] com.hmall.api.client.ItemClient          : [ItemClient#getItemsByIds] <--- HTTP/1.1 200  (237ms)
+00:02:45:938 DEBUG 23816 --- [http-nio-8082-exec-1] com.hmall.api.client.ItemClient          : [ItemClient#getItemsByIds] connection: keep-alive
+00:02:45:938 DEBUG 23816 --- [http-nio-8082-exec-1] com.hmall.api.client.ItemClient          : [ItemClient#getItemsByIds] content-type: application/json
+00:02:45:938 DEBUG 23816 --- [http-nio-8082-exec-1] com.hmall.api.client.ItemClient          : [ItemClient#getItemsByIds] date: Thu, 08 May 2025 16:02:45 GMT
+00:02:45:939 DEBUG 23816 --- [http-nio-8082-exec-1] com.hmall.api.client.ItemClient          : [ItemClient#getItemsByIds] keep-alive: timeout=60
+00:02:45:939 DEBUG 23816 --- [http-nio-8082-exec-1] com.hmall.api.client.ItemClient          : [ItemClient#getItemsByIds] transfer-encoding: chunked
+00:02:45:939 DEBUG 23816 --- [http-nio-8082-exec-1] com.hmall.api.client.ItemClient          : [ItemClient#getItemsByIds] 
+00:02:45:940 DEBUG 23816 --- [http-nio-8082-exec-1] com.hmall.api.client.ItemClient          : [ItemClient#getItemsByIds] [{"id":"100000006163","name":"巴布豆(BOBDOG)柔薄悦动婴儿拉拉裤XXL码80片(15kg以上)","price":77712,"stock":10000,"image":"https://m.360buyimg.com/mobilecms/s720x720_jfs/t23998/350/2363990466/222391/a6e9581d/5b7cba5bN0c18fb4f.jpg!q70.jpg.webp","category":"拉拉裤","brand":"巴布豆","spec":"{}","sold":11,"commentCount":33343434,"isAD":false,"status":2}]
+00:02:45:940 DEBUG 23816 --- [http-nio-8082-exec-1] com.hmall.api.client.ItemClient          : [ItemClient#getItemsByIds] <--- END HTTP (371-byte body)
+00:02:46:299  INFO 23816 --- [nacos-grpc-client-executor-55] com.alibaba.nacos.common.remote.client   : [d04a2f79-8ef2-469f-b914-7a0ee18b34de] Receive server push request, request = NotifySubscriberRequest, requestId = 62
+00:02:46:299  INFO 23816 --- [nacos-grpc-client-executor-55] com.alibaba.nacos.common.remote.client   : [d04a2f79-8ef2-469f-b914-7a0ee18b34de] Ack server push request, request = NotifySubscriberRequest, requestId = 62
+00:06:35:539  WARN 23816 --- [Thread-4] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Start destroying Publisher
+00:06:35:539  WARN 23816 --- [Thread-7] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Start destroying common HttpClient
+00:06:35:539  WARN 23816 --- [Thread-4] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Destruction of the end
+00:06:35:541  WARN 23816 --- [Thread-7] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Destruction of the end
+00:06:35:576  INFO 23816 --- [SpringApplicationShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registering from Nacos Server now...
+00:06:35:582  INFO 23816 --- [SpringApplicationShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registration finished.
+00:06:35:889  INFO 23816 --- [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown rpc client, set status to shutdown
+00:06:35:889  INFO 23816 --- [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown client event executor java.util.concurrent.ScheduledThreadPoolExecutor@68b3979d[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+00:06:35:890  INFO 23816 --- [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Close current connection 1746719972876_192.168.100.1_6921
+00:06:35:892  INFO 23816 --- [nacos-grpc-client-executor-115] c.a.n.c.remote.client.grpc.GrpcClient    : [1746719972876_192.168.100.1_6921]Ignore complete event,isRunning:false,isAbandon=false
+00:06:35:896  INFO 23816 --- [SpringApplicationShutdownHook] c.a.n.c.remote.client.grpc.GrpcClient    : Shutdown grpc executor java.util.concurrent.ThreadPoolExecutor@165454f7[Running, pool size = 6, active threads = 0, queued tasks = 0, completed tasks = 116]
+00:06:35:901  INFO 23816 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+00:06:35:908  INFO 23816 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
