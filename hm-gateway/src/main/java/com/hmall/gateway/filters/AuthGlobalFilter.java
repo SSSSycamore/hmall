@@ -39,17 +39,22 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         if (authorization != null && !authorization.isEmpty()){
             token = authorization.get(0);
         }
+        Long userId = null;
         // 4.解析token
         try {
-            Long userId = jwtTool.parseToken(token);
+            userId = jwtTool.parseToken(token);
         } catch (UnauthorizedException e) {
             ServerHttpResponse response = exchange.getResponse();
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
             return response.setComplete();
         }
-        // TODO 5.将用户信息放入请求头中
+        // 5.将用户信息放入请求头中
+        String userInfo = userId.toString();
+        ServerWebExchange swe = exchange.mutate()
+                .request(builder -> builder.header("user-info", userInfo))
+                .build();
         // 6.放行
-        return chain.filter(exchange);
+        return chain.filter(swe);
     }
 
     private boolean isExclude(String string) {
