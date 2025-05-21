@@ -15,6 +15,7 @@ import com.hmall.pay.enums.PayStatus;
 import com.hmall.pay.mapper.PayOrderMapper;
 import com.hmall.pay.service.IPayOrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,7 +36,8 @@ public class PayOrderServiceImpl extends ServiceImpl<PayOrderMapper, PayOrder> i
     //private final IUserService userService;
     //private final IOrderService orderService;
     private final UserClient userClient;
-    private final TradeClient tradeClient;
+    //private final TradeClient tradeClient;
+    private final RabbitTemplate rabbitTemplate;
     @Override
     public String applyPayOrder(PayApplyDTO applyDTO) {
         // 1.幂等性校验
@@ -68,7 +70,11 @@ public class PayOrderServiceImpl extends ServiceImpl<PayOrderMapper, PayOrder> i
         //order.setStatus(2);
         //order.setPayTime(LocalDateTime.now());
         //orderService.updateById(order);
-        tradeClient.markOrderPaySuccess(po.getBizOrderNo());
+
+        //tradeClient.markOrderPaySuccess(po.getBizOrderNo());
+
+        //6.发送支付成功消息
+        //rabbitTemplate.convertAndSend("pay.direct", "pay.success", po.getBizOrderNo());
     }
 
     public boolean markPayOrderSuccess(Long id, LocalDateTime successTime) {
