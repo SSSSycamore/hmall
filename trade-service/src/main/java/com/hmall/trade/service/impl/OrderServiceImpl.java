@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hmall.api.client.CartClient;
 import com.hmall.api.client.ItemClient;
+import com.hmall.api.client.PayClient;
 import com.hmall.api.domain.dto.ItemDTO;
 import com.hmall.api.domain.dto.OrderDetailDTO;
 import com.hmall.common.exception.BadRequestException;
@@ -48,6 +49,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     private final IOrderDetailService detailService;
     private final ItemClient itemClient;
     private final CartClient cartClient;
+    private final PayClient payClient;
     private final RabbitTemplate rabbitTemplate;
     @Override
     //@Transactional
@@ -136,12 +138,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
     @Override
     public void cancelOrder(Long orderId) {
-        //TODO 取消订单
         Order order = new Order();
         order.setId(orderId);
         order.setStatus(5);
         updateById(order);
-        //TODO 恢复库存
+        payClient.updatePayOrderStatusByBizOrderNo(orderId, 2);
         List<OrderDetail> orderDetails = detailService.listByOrderId(orderId);
         List<OrderDetailDTO> orderDetailDTOS = BeanUtil.copyToList(orderDetails, OrderDetailDTO.class);
         orderDetailDTOS.forEach(orderDetailDTO -> {
