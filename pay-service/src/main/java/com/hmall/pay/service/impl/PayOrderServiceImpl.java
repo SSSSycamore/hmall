@@ -74,7 +74,7 @@ public class PayOrderServiceImpl extends ServiceImpl<PayOrderMapper, PayOrder> i
         //tradeClient.markOrderPaySuccess(po.getBizOrderNo());
 
         //6.发送支付成功消息
-        //rabbitTemplate.convertAndSend("pay.direct", "pay.success", po.getBizOrderNo());
+        rabbitTemplate.convertAndSend("pay.direct", "pay.success", po.getBizOrderNo());
     }
 
     public boolean markPayOrderSuccess(Long id, LocalDateTime successTime) {

@@ -26,6 +26,12 @@ public class ItemClientFallbackFactory implements FallbackFactory<ItemClient> {
                 log.error("异常信息:{}", cause);
                 throw new RuntimeException(cause);
             }
+
+            @Override
+            public ItemDTO queryItemById(Long id) {
+                log.error("异常信息:{}", cause);
+                return null;
+            }
         };
     }
 }
