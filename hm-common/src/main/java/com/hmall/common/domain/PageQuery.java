@@ -26,7 +26,7 @@ public class PageQuery {
     @ApiModelProperty("是否升序")
     private Boolean isAsc = true;
     @ApiModelProperty("排序方式")
-    private String sortBy;
+    private String sortBy = "price";
 
     public int from(){
         return (pageNo - 1) * pageSize;
